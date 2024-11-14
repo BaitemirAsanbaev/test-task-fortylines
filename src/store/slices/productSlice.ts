@@ -22,13 +22,6 @@ export const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    toggleFav: (state: ProductState, action: PayloadAction<number>) => {
-      const product = state.products.find((p) => p.id === action.payload);
-      if (product) {
-        product.isFav = !product.isFav;
-      }
-      localStorage.setItem("products", JSON.stringify(state.products));
-    },
     filterByCategory: (state: ProductState, action: PayloadAction<string>) => {
       const allProducts = JSON.parse(localStorage.getItem("products") ?? "[]");
 
@@ -54,8 +47,8 @@ export const productSlice = createSlice({
       action: PayloadAction<boolean | string>
     ) => {
       const allProducts = JSON.parse(localStorage.getItem("products") ?? "[]");
-      
-      if (action.payload==="*") {
+
+      if (action.payload === "*") {
         state.products = allProducts;
         return;
       }
@@ -99,6 +92,7 @@ export const productSlice = createSlice({
           if (product) {
             product.isFav = !product.isFav;
           }
+          localStorage.setItem("products", JSON.stringify(state.products));
         }
       )
       .addCase(toggleFav.rejected, (state: ProductState, action) => {
@@ -133,7 +127,6 @@ export const productSlice = createSlice({
 export const productsReducer = productSlice.reducer;
 
 export const {
-  toggleFav: toggleFavAction,
   favsOnly,
   filterByCategory,
   search,
