@@ -3,8 +3,7 @@ import classes from "./Product.module.scss";
 import full from "./../../assets/full.svg";
 import empty from "../../assets/empty.svg";
 import { useAppDispatch } from "../../store/hooks";
-import { toggleFav } from "../../store/slices/productSlice";
-
+import { toggleFav } from "../../store/services/productService";
 export interface IProductProps {
   data: IProduct;
 }
@@ -12,7 +11,8 @@ export interface IProductProps {
 export function Product({ data }: IProductProps) {
   const dispatch = useAppDispatch();
   function clickFav(){
-    dispatch(toggleFav(data))
+    dispatch(toggleFav(data.id))
+
   }
   return (
     <div className={classes.Product}>
