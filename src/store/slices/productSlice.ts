@@ -121,6 +121,7 @@ const initialState: ProductState = {
       category: { id: 4, name: "headphones" },
     },
   ],
+
   favourites: [],
   errors: null,
   loading: false,
@@ -134,7 +135,9 @@ export const productSlice = createSlice({
       const savedFavourites = JSON.parse(localStorage.getItem("fav") || "[]");
       state.favourites = savedFavourites;
       state.products.forEach((product) => {
-        product.isFav = savedFavourites.some((fav:IProduct) => fav.id === product.id);
+        product.isFav = savedFavourites.some(
+          (fav: IProduct) => fav.id === product.id
+        );
       });
     },
 
@@ -152,12 +155,19 @@ export const productSlice = createSlice({
         localStorage.setItem("fav", JSON.stringify(state.favourites));
       }
     },
-  },
-  extraReducers: (build) => {
-    // build.addCase()  
+    search: (state: ProductState, action: PayloadAction<string>) => {
+      const searchTerm = action.payload.toLowerCase();
+      state.products = initialState.products
+      state.products = state.products.filter((p) => {
+        return (
+          p.name.toLowerCase().includes(searchTerm) ||
+          p.description.toLowerCase().includes(searchTerm)
+        );
+      }); 
+    },
   },
 });
 
 export const productsReducer = productSlice.reducer;
 
-export const { toggleFav, loadFromLocal } = productSlice.actions;
+export const { toggleFav, loadFromLocal, search } = productSlice.actions;
