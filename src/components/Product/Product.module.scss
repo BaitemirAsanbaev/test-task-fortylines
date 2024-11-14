@@ -1,13 +1,21 @@
 .Product {
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   width: 300px;
-  box-shadow: 0px 0px 0px 10px darkblue;
+  box-shadow: 10px 10px 0px 0px darkblue;
   background-color: rgb(255, 255, 255);
+  border-top: 10px solid darkblue;
+  border-left: 10px solid darkblue;
   transition: 0.5s;
   &:hover {
     box-shadow: 10px 10px 20px darkblue;
+    border: 0px solid transparent;
     transform: translate(-10px, -10px);
+  }
+  >img {
+    width: 100%;
+    padding: 20px;
   }
   .info {
     display: flex;
@@ -16,9 +24,7 @@
     h2 {
       color: darkblue;
     }
-    img {
-      width: 100%;
-    }
+    
     .category {
       color: darkgray;
     }
