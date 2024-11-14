@@ -1,22 +1,37 @@
 import { useEffect, useState } from "react";
-import { filterByCategory, search } from "../../store/slices/productSlice";
+import { favsOnly, filterByCategory, search } from "../../store/slices/productSlice";
 import {
   FormControl,
   InputLabel,
   MenuItem,
   Select,
   TextField,
+  ToggleButton,
+  ToggleButtonGroup,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { fetchCategories } from "../../store/services/categoryService";
 import classes from "./Adjustment.module.scss";
+import full from "../../assets/full.svg";
+import empty from "../../assets/empty.svg";
 
 export function Adjustment() {
   const [target, setTarget] = useState<string>("");
   const [filter, setFilter] = useState<string>("*");
+  const [favs, setFavs] = useState<boolean|string>("*");
 
   const dispatch = useAppDispatch();
   const categories = useAppSelector((state) => state.products.categories);
+
+  const handleFavChange = (
+    _event: React.MouseEvent<HTMLElement>,
+    isFavs: boolean | null
+  ) => {
+    if (isFavs !== null) {
+      setFavs(isFavs);
+      dispatch(favsOnly(isFavs))
+    }
+  };
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -24,6 +39,21 @@ export function Adjustment() {
 
   return (
     <div className={classes.Adjustment}>
+      <div>
+        <FormControl>
+          <ToggleButtonGroup exclusive value={favs} onChange={handleFavChange}>
+            <ToggleButton value={true} aria-label="favourites only">
+              <img src={full} alt="fav" />
+            </ToggleButton>
+            <ToggleButton value={false} aria-label="all">
+              <img src={empty} alt="fav" />
+            </ToggleButton>
+            <ToggleButton value={"*"} aria-label="all">
+              <b>All</b>
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </FormControl>
+      </div>
       <div>
         <FormControl>
           <InputLabel id="filter-label">Filter</InputLabel>
