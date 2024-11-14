@@ -1,7 +1,7 @@
 import { IProduct } from "../../models/Product";
 import classes from "./Product.module.scss";
-import full from "./../../assets/full.svg";
-import empty from "../../assets/empty.svg";
+import full from "/full.svg";
+import empty from "/empty.svg";
 import { useAppDispatch } from "../../store/hooks";
 import { toggleFav } from "../../store/services/productService";
 export interface IProductProps {

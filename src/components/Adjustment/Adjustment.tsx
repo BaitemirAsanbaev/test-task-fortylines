@@ -12,8 +12,8 @@ import {
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { fetchCategories } from "../../store/services/categoryService";
 import classes from "./Adjustment.module.scss";
-import full from "../../assets/full.svg";
-import empty from "../../assets/empty.svg";
+import full from "/full.svg";
+import empty from "/empty.svg";
 
 export function Adjustment() {
   const [target, setTarget] = useState<string>("");
