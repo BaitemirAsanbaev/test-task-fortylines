@@ -1,6 +1,7 @@
 .Adjustment {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   margin-bottom: 50px;
   padding: 20px;
   >div{
@@ -30,4 +31,12 @@
         }
       }
   }
+}
+
+@media (max-width:900px) {
+    .Adjustment{
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
 }
