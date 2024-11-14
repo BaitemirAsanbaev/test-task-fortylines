@@ -1,0 +1,40 @@
+.Product {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+  &:hover {
+    box-shadow: 0 0 10px darkblue;
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    h2 {
+      color: darkblue;
+    }
+    img {
+      width: 100%;
+    }
+    .category {
+      color: darkgray;
+    }
+
+    .card_bottom {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .price {
+        color: green;
+        font-weight: bold;
+      }
+      .heart {
+        width: 30px;
+        cursor: pointer;
+
+      }
+    }
+  }
+}

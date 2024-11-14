@@ -1,7 +1,9 @@
+import { ProductList } from "./components/ProductsList/ProductsList"
+
 function App() {
   return (
-    <div>
-huesos
+    <div className="App">
+      <ProductList/>
     </div>
   )
 }

@@ -3,7 +3,7 @@ export interface IProduct{
     name:string
     description:string
     image:string
-    priec:number
+    price:number
     category:ICategory
     isFav:boolean
 }
