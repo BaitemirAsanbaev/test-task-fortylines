@@ -1,50 +1,54 @@
-# React + TypeScript + Vite
+# Тестовое задание "Список продуктов"
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Посетить сайт
+<a href="https://test-task-fortylines.vercel.app/" _blank="true">Ссылка на сайт</a>
 
-Currently, two official plugins are available:
+<a href="https://test-task-fortylines-backend.onrender.com/swagger" _blank="true">Ссылка на swagger</a>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Stack
+- React
+- Vite
+- TypeScript
+- Redux Toolkit
+- Scss
+- axios
+- Material UI
 
-## Expanding the ESLint configuration
+###  Установка и запуск проекта
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+###### Склонировать репозиторий
+```shell
+git clone https://github.com/BaitemirAsanbaev/test-task-fortylines.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+###### Установить библиотеки и запустить
+```shell
+npm i
+npm run dev
 ```
+
+### Функционал
+- Отображение списка продуктов в виде карточек
+- Возможность добавить продукт в избранное
+- Фильтрация по категориям
+- Фильтрация по избранным
+- Поиск по имени и описанию
+- хранение продуктов и категорий в локальном хранилище
+
+### Структура проекта
+
+###### components
+Переиспользуемые tsx компоненты, испльзуются для ui. Содержат JSX и модульный scss
+###### const
+Постоянные переменные. Содержит api сервера
+###### models
+Модели для сущностей. Содержат interfaces для продуктов и категорий.
+###### store
+Redux. Содержит:
+- слайсы для отслеживания состояний продуктов и категорий
+- кастомные dispatch и selector хуки
+- asyncThunk. Запросы на сервер
+- инициализация и конфигурация store
+
+### Backend
+Для этого проекта я решил написать небольшой backend на nodejs express с базой данных sqlite
